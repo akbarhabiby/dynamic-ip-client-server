@@ -7,7 +7,7 @@ const log = (level, log, time = new Date()) => {
   return console.log(JSON.stringify({ level, log, time }));
 };
 
-((port = 8888, ip = "") => {
+((port = +process.env.DYNAMIC_IP_SERVER_PORT || 8888, ip = "") => {
   http
     .createServer((req, res) => {
       res.setHeader("Content-Type", "application/json");

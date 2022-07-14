@@ -42,12 +42,16 @@ const client = (method = "GET", url = "", headers) => {
       .end();
   });
 };
+const log = (level, log, time = new Date()) => {
+  return console.log(JSON.stringify({ level, log, time }));
+};
 
-(() => {
+((server = process.env.DYNAMIC_IP_SERVER) => {
+  log("start", `Server is [${server}]`);
   setInterval(async () => {
     try {
       const ip = await client("GET", "ifconfig.me");
-      const result = await client("POST", process.env.DYNAMIC_IP_SERVER, {
+      const result = await client("POST", server, {
         "x-request": `{"aXBhZGRy": "${ip}"}`,
       });
       console.log(result);

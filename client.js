@@ -47,7 +47,7 @@ const client = (method = "GET", url = "", headers) => {
   setInterval(async () => {
     try {
       const ip = await client("GET", "ifconfig.me");
-      const result = await client("POST", `127.0.0.1:${port}`, {
+      const result = await client("POST", process.env.DYNAMIC_IP_SERVER, {
         "x-request": `{"aXBhZGRy": "${ip}"}`,
       });
       console.log(result);

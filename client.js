@@ -43,7 +43,7 @@ const client = (method = "GET", url = "", headers) => {
   });
 };
 
-((port = 8888) => {
+(() => {
   setInterval(async () => {
     try {
       const ip = await client("GET", "ifconfig.me");
